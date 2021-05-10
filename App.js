@@ -5,8 +5,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Ionicons } from "@expo/vector-icons";
 import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
-import * as Notifications from "expo-notifications";
-import * as Permissions from "expo-permissions";
 
 import mealsReducer from "./store/reducers/meals";
 
@@ -63,28 +61,9 @@ const TimesStackScreen = () => (
   </TimesStack.Navigator>
 );
 
-const screenStyle = { headerStyle: { backgroundColor: "aqua" } };
-
 const Tab = createBottomTabNavigator();
 
 function App() {
-  askPermissions = async () => {
-    const { status: existingStatus } = await Permissions.getAsync(
-      Permissions.NOTIFICATIONS
-    );
-    let finalStatus = existingStatus;
-    if (existingStatus !== "granted") {
-      const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
-      finalStatus = status;
-    }
-    if (finalStatus !== "granted") {
-      return false;
-    }
-    return true;
-  };
-
-  askPermissions();
-
   return (
     <Provider store={store}>
       <NavigationContainer>
