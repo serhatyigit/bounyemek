@@ -31,8 +31,8 @@ const TodayListScreen = ({ navigation }) => {
       const dailyLunchList = lunchList[dayOfNotification - 1];
       const dailyDinnerList = dinnerList[dayOfNotification - 1];
       if (!notifyAtOnlyFavs) {
-        sendNotification("Öğle Yemeği", dailyLunchList, 3, 0);
-        sendNotification("Akşam Yemeği", dailyDinnerList, 4, 0);
+        sendNotification("Öğle Yemeği", dailyLunchList, 2, 45);
+        sendNotification("Akşam Yemeği", dailyDinnerList, 2, 46);
       } else {
         const hasAnyFavInLunch = dailyLunchList.some((meal) => meal.isFav === true);
         const hasAnyFavInDinner = dailyDinnerList.some((meal) => meal.isFav === true);
