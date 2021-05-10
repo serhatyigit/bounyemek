@@ -9,15 +9,46 @@ import {
   View,
 } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import HeaderButton from "../components/HeaderButton";
-import DailyListItem from "../components/DailyListItem";
-import { dayNames, monthNames } from "../data/dateNames";
-import Colors from "../constants/Colors";
 import { useSelector } from "react-redux";
+import DailyListItem from "../components/DailyListItem";
+import HeaderButton from "../components/HeaderButton";
+import Colors from "../constants/Colors";
+import { dayNames, monthNames } from "../data/dateNames";
+import {
+  askPermission,
+  createNotificationAlert,
+} from "../notifications/askPermission";
+import sendNotification from "../notifications/sendNotification";
 
 const TodayListScreen = ({ navigation }) => {
   const lunchList = useSelector((state) => state.meals.lunchList);
   const dinnerList = useSelector((state) => state.meals.dinnerList);
+
+  const notifyAtOnlyFavs = useSelector((state) => state.meals.notifyAtOnlyFavs);
+
+  const notificationPermission = askPermission()
+    .then((status) => {
+      if (!status) {
+        createNotificationAlert();
+        return false;
+      }
+      return true;
+    })
+    .catch((err) => err);
+
+  if (notificationPermission === false) {
+    console.log("false");
+  }
+
+  let dayOfNotification = new Date().getDate();
+
+  // useEffect(() => {
+  //   if (notificationPermission.catch() === false) {
+  //     createNotificationAlert();
+  //   }
+  // }, [notificationPermission]);
+
+  sendNotification("Öğle Yemeği", "Body", 19, 26);
 
   const date = new Date();
   const [day, setDay] = useState(date.getDate());

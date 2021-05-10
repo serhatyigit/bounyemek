@@ -16,3 +16,5 @@ const sendNotification = (title, body, hour, minute) => {
 };
 
 const listToText = (list) => {};
+
+export default sendNotification;

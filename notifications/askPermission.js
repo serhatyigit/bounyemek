@@ -1,6 +1,7 @@
 import * as Permissions from "expo-permissions";
+import { Alert } from "react-native";
 
- askPermission = async () => {
+export const askPermission = async () => {
   const { status: existingStatus } = await Permissions.getAsync(
     Permissions.NOTIFICATIONS
   );
@@ -15,4 +16,16 @@ import * as Permissions from "expo-permissions";
   return true;
 };
 
-export default askPermission;
+export const createNotificationAlert = () => {
+  Alert.alert(
+    "Bildirim İzni Kapalı",
+    "Yemek saatinden önce listeyi bildirim olarak almak istiyorsanız bildirimlere izin vermelisiniz. \n Ayarlar > Bildirim ayarlarından bildirim seçeneğini açabilirsiniz.",
+    [
+      {
+        text: "Tamam",
+        style: "cancel",
+        onPress: () => {},
+      },
+    ]
+  );
+};
