@@ -1,23 +1,13 @@
 import { AntDesign } from "@expo/vector-icons";
 import React, { useEffect, useLayoutEffect, useState } from "react";
-import {
-  Alert,
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Alert, FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useSelector } from "react-redux";
 import DailyListItem from "../components/DailyListItem";
 import HeaderButton from "../components/HeaderButton";
 import Colors from "../constants/Colors";
 import { dayNames, monthNames } from "../data/dateNames";
-import {
-  askPermission,
-  createNotificationAlert,
-} from "../notifications/askPermission";
+import { askPermission, createNotificationAlert } from "../notifications/askPermission";
 import sendNotification from "../notifications/sendNotification";
 
 const TodayListScreen = ({ navigation }) => {
@@ -55,16 +45,11 @@ const TodayListScreen = ({ navigation }) => {
   const [dayNum, setDayNum] = useState(date.getDay());
 
   let month = monthNames[date.getMonth()];
-  const [currentDate, setCurrentDate] = useState(
-    `  Bugün \n ${day} ${month} ${dayNames[dayNum]} `
-  );
+  const [currentDate, setCurrentDate] = useState(`  Bugün \n ${day} ${month} ${dayNames[dayNum]} `);
 
   const daysInMonth = (month, year) => new Date(year, month, 0).getDate();
 
-  const DaysInCurrentMonth = daysInMonth(
-    date.getMonth() + 1,
-    date.getFullYear()
-  );
+  const DaysInCurrentMonth = daysInMonth(date.getMonth() + 1, date.getFullYear());
 
   const changeDay = (direction) => {
     switch (direction) {
@@ -96,9 +81,7 @@ const TodayListScreen = ({ navigation }) => {
 
   useEffect(() => {
     date.getDate() === day
-      ? setCurrentDate(
-          `Bugün ${day} ${month} \n            ${dayNames[dayNum]} `
-        )
+      ? setCurrentDate(`Bugün ${day} ${month} \n            ${dayNames[dayNum]} `)
       : setCurrentDate(`${day} ${month} \n    ${dayNames[dayNum]} `);
   }, [day]);
 
@@ -124,41 +107,24 @@ const TodayListScreen = ({ navigation }) => {
       ),
       headerRight: () => (
         <HeaderButtons HeaderButtonComponent={HeaderButton}>
-          <Item
-            title="Info"
-            iconName="ios-information-circle"
-            onPress={() => navigation.navigate("InfoScreen")}
-          />
+          <Item title="Info" iconName="ios-information-circle" onPress={() => navigation.navigate("InfoScreen")} />
         </HeaderButtons>
       ),
     });
   }, [navigation]);
 
   const LunchRenderItem = ({ item }) => (
-    <DailyListItem
-      title={item.title}
-      isFav={item.isFav}
-      id={item.id}
-      type={"lunch"}
-    />
+    <DailyListItem title={item.title} isFav={item.isFav} id={item.id} type={"lunch"} />
   );
   const DinnerRenderItem = ({ item }) => (
-    <DailyListItem
-      title={item.title}
-      isFav={item.isFav}
-      id={item.id}
-      type={"dinner"}
-    />
+    <DailyListItem title={item.title} isFav={item.isFav} id={item.id} type={"dinner"} />
   );
 
   return (
     <View style={styles.todayListView}>
       <View style={styles.dateView}>
         <View style={styles.prevDayButtonView}>
-          <TouchableOpacity
-            style={styles.buttonView}
-            onPress={() => changeDay("prev")}
-          >
+          <TouchableOpacity style={styles.buttonView} onPress={() => changeDay("prev")}>
             <AntDesign name="left" size={24} color="red" />
             <Text style={styles.prevDayButtonText}>{`Önceki \n   Gün`}</Text>
           </TouchableOpacity>
@@ -167,10 +133,7 @@ const TodayListScreen = ({ navigation }) => {
           <Text style={styles.dateText}>{currentDate}</Text>
         </View>
         <View style={styles.nextDayButtonView}>
-          <TouchableOpacity
-            style={styles.buttonView}
-            onPress={() => changeDay("next")}
-          >
+          <TouchableOpacity style={styles.buttonView} onPress={() => changeDay("next")}>
             <Text style={styles.nextDayButtonText}>{`Sonraki \n   Gün`}</Text>
             <AntDesign name="right" size={24} color="green" />
           </TouchableOpacity>
