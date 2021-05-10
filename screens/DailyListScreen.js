@@ -107,7 +107,11 @@ const TodayListScreen = ({ navigation }) => {
       ),
       headerRight: () => (
         <HeaderButtons HeaderButtonComponent={HeaderButton}>
-          <Item title="Info" iconName="ios-information-circle" onPress={() => navigation.navigate("InfoScreen")} />
+          <Item
+            title="Info"
+            iconName="ios-information-circle"
+            onPress={() => navigation.navigate("InfoScreen")}
+          />
         </HeaderButtons>
       ),
     });
