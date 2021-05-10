@@ -1,16 +1,16 @@
 import * as Notifications from "expo-notifications";
 
-const sendNotification = (title, body, hour, minute) => {
+const sendNotification = (title, list, hour, minute) => {
   Notifications.scheduleNotificationAsync({
     content: {
-      title: title,
-      body: body,
+      title,
+      body: listToText(list),
     },
 
     trigger: {
       hour: hour,
       minute: minute,
-      repeats: true,
+      repeats: false,
     },
   });
 };
