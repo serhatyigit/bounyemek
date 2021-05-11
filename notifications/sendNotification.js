@@ -13,7 +13,6 @@ const sendNotification = (title, list, hour, minute) => {
       title,
       body: bodyHandler(list),
     },
-
     trigger: {
       hour: hour,
       minute: minute,

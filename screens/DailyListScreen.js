@@ -14,24 +14,27 @@ const TodayListScreen = ({ navigation }) => {
   const lunchList = useSelector((state) => state.meals.lunchList);
   const dinnerList = useSelector((state) => state.meals.dinnerList);
 
-  let dayOfNotification = new Date().getDate();
+  const date = new Date();
+  const dayOfNotification = date.getDate();
 
   const notifyAtOnlyFavs = useSelector((state) => state.meals.notifyAtOnlyFavs);
 
-  const notificationPermission = askPermission()
-    .then((status) => {
+  let notificationPermission;
+
+  useEffect(() => {
+    notificationPermission = askPermission().then((status) => {
       if (!status) {
         createNotificationAlert();
       }
-    })
-    .catch((err) => err);
+    });
+  }, []);
 
   useEffect(() => {
     if (notificationPermission) {
       const dailyLunchList = lunchList[dayOfNotification - 1];
       const dailyDinnerList = dinnerList[dayOfNotification - 1];
       if (!notifyAtOnlyFavs) {
-        sendNotification("Öğle Yemeği", dailyLunchList, 2, 45);
+        sendNotification("Öğle Yemeği", dailyLunchList, 4, 29);
         sendNotification("Akşam Yemeği", dailyDinnerList, 2, 46);
       } else {
         const hasAnyFavInLunch = dailyLunchList.some((meal) => meal.isFav === true);
@@ -43,7 +46,6 @@ const TodayListScreen = ({ navigation }) => {
     }
   }, [dayOfNotification]);
 
-  const date = new Date();
   const [day, setDay] = useState(date.getDate());
   const [dayNum, setDayNum] = useState(date.getDay());
 
