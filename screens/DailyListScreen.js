@@ -34,14 +34,14 @@ const TodayListScreen = ({ navigation }) => {
       const dailyLunchList = lunchList[dayOfNotification - 1];
       const dailyDinnerList = dinnerList[dayOfNotification - 1];
       if (!notifyAtOnlyFavs) {
-        sendNotification("Öğle Yemeği", dailyLunchList, 4, 29);
-        sendNotification("Akşam Yemeği", dailyDinnerList, 2, 46);
+        sendNotification("Öğle Yemeği", dailyLunchList, 0, 30);
+        sendNotification("Akşam Yemeği", dailyDinnerList, 1, 0);
       } else {
         const hasAnyFavInLunch = dailyLunchList.some((meal) => meal.isFav === true);
         const hasAnyFavInDinner = dailyDinnerList.some((meal) => meal.isFav === true);
 
-        hasAnyFavInLunch ? sendNotification("Öğle Yemeği", dailyLunchList, 3, 0) : null;
-        hasAnyFavInDinner ? sendNotification("Akşam Yemeği", dailyDinnerList, 4, 0) : null;
+        hasAnyFavInLunch ? sendNotification("Öğle Yemeği", dailyLunchList, 0, 30) : null;
+        hasAnyFavInDinner ? sendNotification("Akşam Yemeği", dailyDinnerList, 1, 0) : null;
       }
     }
   }, [dayOfNotification]);

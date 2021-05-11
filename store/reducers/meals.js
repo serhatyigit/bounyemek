@@ -12,10 +12,11 @@ const initialState = {
 const mealsReducer = (state = initialState, action) => {
   switch (action.type) {
     case TOGGLE_FAVORITE:
-      const existingIndexInFavs = state.favoriteMeals.findIndex((meal) => meal.id === action.mealId);
-      const existingIndexInAll = state.allMeals.findIndex((meal) => meal.id === action.mealId);
-      const existingIndexInLunch = state.lunchList.findIndex((meal) => meal.id === action.mealId);
-      const existingIndexInDinner = state.dinnerList.findIndex((meal) => meal.id === action.mealId);
+      const acitonId = action.mealId;
+      const existingIndexInFavs = state.favoriteMeals.findIndex((meal) => meal.id === acitonId);
+      const existingIndexInAll = state.allMeals.findIndex((meal) => meal.id === acitonId);
+      const existingIndexInLunch = state.lunchList.findIndex((meal) => meal.id === acitonId);
+      const existingIndexInDinner = state.dinnerList.findIndex((meal) => meal.id === acitonId);
 
       if (existingIndexInFavs >= 0) {
         // Updated Copy of Selected Meal
