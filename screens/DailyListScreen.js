@@ -34,14 +34,14 @@ const TodayListScreen = ({ navigation }) => {
       const dailyLunchList = lunchList[dayOfNotification - 1];
       const dailyDinnerList = dinnerList[dayOfNotification - 1];
       if (!notifyAtOnlyFavs) {
-        sendNotification("Öğle Yemeği", dailyLunchList, 0, 30);
-        sendNotification("Akşam Yemeği", dailyDinnerList, 1, 0);
+        sendNotification("Öğle Yemeği", dailyLunchList, 11, 0);
+        sendNotification("Akşam Yemeği", dailyDinnerList, 16, 0);
       } else {
         const hasAnyFavInLunch = dailyLunchList.some((meal) => meal.isFav === true);
         const hasAnyFavInDinner = dailyDinnerList.some((meal) => meal.isFav === true);
 
-        hasAnyFavInLunch ? sendNotification("Öğle Yemeği", dailyLunchList, 0, 30) : null;
-        hasAnyFavInDinner ? sendNotification("Akşam Yemeği", dailyDinnerList, 1, 0) : null;
+        hasAnyFavInLunch.length > 0 ? sendNotification("Öğle Yemeği", dailyLunchList, 11, 0) : null;
+        hasAnyFavInDinner.length > 0 ? sendNotification("Akşam Yemeği", dailyDinnerList, 16, 0) : null;
       }
     }
   }, [dayOfNotification]);
@@ -206,22 +206,26 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   lunchCardView: {
-    height: "100%",
+    // height: "100%",
+    maxHeight: "100%",
     borderWidth: 3.5,
     borderRadius: 20,
     borderColor: Colors.lunchColor,
     width: "75%",
+    paddingVertical: 4,
   },
   dinnerCardView: {
-    height: "100%",
+    // height: "100%",
+    maxHeight: "100%",
     borderWidth: 3.5,
     borderRadius: 20,
     borderColor: Colors.dinnerColor,
     width: "75%",
+    paddingVertical: 4,
   },
   CardViewContainer: {
     alignItems: "center",
-    marginVertical: 5,
+    marginTop: 5,
     flex: 1,
   },
   prevDayButtonView: {

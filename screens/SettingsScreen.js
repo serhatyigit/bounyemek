@@ -41,8 +41,7 @@ const SettingsScreen = ({ navigation }) => {
       </View>
       <View style={styles.detailTextView}>
         <Text style={styles.detailText}>
-          Bu seçenek açık olduğunda sadece favori yemeklerinizin olduğu
-          öğünlerde bildirim alırsınız.
+          Bu seçenek açık olduğunda sadece favori yemeklerinizin olduğu öğünlerde bildirim alırsınız.
         </Text>
       </View>
     </View>
@@ -70,6 +69,7 @@ const styles = StyleSheet.create({
   },
   detailTextView: {
     paddingTop: 20,
+    justifyContent: "center",
   },
   detailText: {
     fontSize: 18,
