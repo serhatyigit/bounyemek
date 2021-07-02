@@ -13,6 +13,7 @@ const AllListScreen = ({ navigation }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: "Bütün Liste",
+      headerTintColor: "#00bfff",
       headerLeft: () => (
         <HeaderButtons HeaderButtonComponent={HeaderButton}>
           <Item

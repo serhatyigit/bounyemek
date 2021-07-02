@@ -101,6 +101,7 @@ const TodayListScreen = ({ navigation }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: "Günlük Liste",
+      headerTintColor: "#00bfff",
       headerLeft: () => (
         <HeaderButtons HeaderButtonComponent={HeaderButton}>
           <Item

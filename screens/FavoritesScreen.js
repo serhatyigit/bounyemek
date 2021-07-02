@@ -12,6 +12,7 @@ const FavoritesScreen = ({ navigation }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: "Favoriler",
+      headerTintColor: "#00bfff",
       headerLeft: () => (
         <HeaderButtons HeaderButtonComponent={HeaderButton}>
           <Item

@@ -7,6 +7,7 @@ const SettingsScreen = ({ navigation }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: "Bildirim Ayarları",
+      headerTintColor: "#00bfff",
       headerBackTitleStyle: {
         fontSize: 14,
       },

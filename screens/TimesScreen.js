@@ -33,6 +33,7 @@ const TimesScreen = ({ navigation }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: "Yemek Saatleri",
+      headerTintColor: "#00bfff",
       headerLeft: () => (
         <HeaderButtons HeaderButtonComponent={HeaderButton}>
           <Item
