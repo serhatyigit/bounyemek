@@ -22,6 +22,9 @@ const sendNotification = (title, list, hour, minute) => {
 };
 
 const bodyHandler = (list) => {
+  if (list[0].title === "empty") {
+    return `Bu öğünde yemek servisi mevcut değil.`;
+  }
   const favoritesInList = list.filter((meal) => meal.isFav === true);
   const unfavoritesInList = list.filter((meal) => meal.isFav === false);
 

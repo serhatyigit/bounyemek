@@ -34,8 +34,8 @@ const TodayListScreen = ({ navigation }) => {
       const dailyLunchList = lunchList[dayOfNotification - 1];
       const dailyDinnerList = dinnerList[dayOfNotification - 1];
       if (!notifyAtOnlyFavs) {
-        sendNotification("Öğle Yemeği", dailyLunchList, 11, 0);
-        sendNotification("Akşam Yemeği", dailyDinnerList, 16, 0);
+        sendNotification("Öğle Yemeği", dailyLunchList, 9, 13);
+        sendNotification("Akşam Yemeği", dailyDinnerList, 9, 12);
       } else {
         const hasAnyFavInLunch = dailyLunchList.some((meal) => meal.isFav === true);
         const hasAnyFavInDinner = dailyDinnerList.some((meal) => meal.isFav === true);
@@ -50,7 +50,7 @@ const TodayListScreen = ({ navigation }) => {
   const [dayNum, setDayNum] = useState(date.getDay());
 
   let month = monthNames[date.getMonth()];
-  const [currentDate, setCurrentDate] = useState(`  Bugün \n ${day} ${month} ${dayNames[dayNum]} `);
+  const [currentDate, setCurrentDate] = useState(`  Bugün \n ${day} ${month}    ${dayNames[dayNum]} `);
 
   const daysInMonth = (month, year) => new Date(year, month, 0).getDate();
 
@@ -87,7 +87,7 @@ const TodayListScreen = ({ navigation }) => {
   useEffect(() => {
     date.getDate() === day
       ? setCurrentDate(`Bugün ${day} ${month} \n            ${dayNames[dayNum]} `)
-      : setCurrentDate(`${day} ${month} \n    ${dayNames[dayNum]} `);
+      : setCurrentDate(`${day} ${month} \n       ${dayNames[dayNum]} `);
   }, [day]);
 
   const createAlert = () =>
@@ -123,12 +123,22 @@ const TodayListScreen = ({ navigation }) => {
     });
   }, [navigation]);
 
-  const LunchRenderItem = ({ item }) => (
-    <DailyListItem title={item.title} isFav={item.isFav} id={item.id} type={"lunch"} />
-  );
-  const DinnerRenderItem = ({ item }) => (
-    <DailyListItem title={item.title} isFav={item.isFav} id={item.id} type={"dinner"} />
-  );
+  const LunchRenderItem = ({ item }) =>
+    item.title !== "empty" ? (
+      <DailyListItem title={item.title} isFav={item.isFav} id={item.id} type={"lunch"} />
+    ) : (
+      <Text style={{ ...styles.lunchNameText, ...styles.noServiceText }}>
+      Bu öğünde yemek servisi mevcut değil
+    </Text>
+    );
+  const DinnerRenderItem = ({ item }) =>
+    item.title !== "empty" ? (
+      <DailyListItem title={item.title} isFav={item.isFav} id={item.id} type={"dinner"} />
+    ) : (
+      <Text style={{ ...styles.dinnerNameText, ...styles.noServiceText }}>
+        Bu öğünde yemek servisi mevcut değil
+      </Text>
+    );
 
   return (
     <View style={styles.todayListView}>
@@ -248,6 +258,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: Colors.dinnerColor,
     fontWeight: "bold",
+  },
+  noServiceText: {
+    alignSelf: "center",
+    padding: "10%",
   },
 });
 
