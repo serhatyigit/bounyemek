@@ -7,11 +7,11 @@ This app developed for students, academic personal, and other staff who get serv
 
 DEMO VIDEO
 
-https://vimeo.com/571135931
+<img src="https://github.com/serhatyigit/bounyemek/blob/main/demo%20video.gif" width="480" height="640">
 
 Notification Example
 
-https://i.hizliresim.com/fs4t7og.png
+<img src="https://github.com/serhatyigit/bounyemek/blob/main/notification%20example.png" width="480" height="640">
 
 
 
