@@ -7,8 +7,6 @@ This app developed for students, academic personal, and other staff who get serv
 
 DEMO VIDEO - https://vimeo.com/571135931
 
-<img src="https://github.com/serhatyigit/bounyemek/blob/main/demo%20video.gif" width="376" height="672">
-
 Notification Example
 
 <img src="https://github.com/serhatyigit/bounyemek/blob/main/notification%20example.png" width="376" height="672">
